@@ -1,17 +1,39 @@
-import chalk from 'chalk';
-import boxen from 'boxen';
+import inquirer from 'inquirer'
 
-function write(text){
-    process.stdout.write(text);
-}
-
-// for(let i = 0; i<255;i++){
-//     write(chalk.rgb(i,i,i)('#'));
-// }
-// console.log(chalk.italic('hello'));
-let time = new Date().toLocaleTimeString();
-write(time);
-setTimeout(()=>) {
-    write('\x1B[8D'); // A up B down C right D left
-    write('MM22    ');
-}, 5000 );
+inquirer.prompt([
+  {
+    name: "greeting",
+    message: "What is your name?",
+    type: "input",
+  },
+  {
+    name: "colors",
+    message: "What's your favorite color?",
+    type: "list",
+    choices: ["black", "red", "blue", "yellow", "green", "pink"]
+  },
+  {
+    name: "age",
+    message: "How old are you?",
+    type: "number",
+  },
+  {
+    name: "hobbies",
+    message: "What are your hobbies?",
+    type: "checkbox",
+    choices: ["reading", "sports", "cooking", "traveling", "painting", "other"]
+  },
+  {
+    name: "confirm",
+    message: "Are you sure?",
+    type: "confirm",
+  },
+  {
+    name: "password",
+    message: "Enter your password",
+    type: "password",
+  }
+])
+.then(function (answers) {
+  console.log(answers);
+});
